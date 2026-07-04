@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - UCA</title>
+    <link rel="icon" href="https://www.uca.edu.sv/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-card {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+        .login-logo {
+            max-width: 120px;
+            margin-bottom: 20px;
+        }
+        .login-card h2 {
+            color: #333;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #337ab7;
+        }
+        .btn-login {
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        .btn-login:hover {
+            background-color: #286090;
+        }
+        .error-message {
+            color: #d9534f;
+            font-size: 13px;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <!-- Imagen sin el texto alternativo que delate el logo -->
+        <img src="image_52cf53.png" alt="" class="login-logo">
+        
+        <h2>Acceso al Sistema</h2>
+        
+        <form onsubmit="validarIngreso(event)">
+            <div class="input-group">
+                <input type="text" id="usuarioInput" placeholder="Usuario" required autocomplete="off">
+            </div>
+            <div class="input-group">
+                <input type="password" id="claveInput" placeholder="Contraseña" required>
+            </div>
+            
+            <button type="submit" class="btn-login">Ingresar</button>
+            
+            <div id="mensajeError" class="error-message">
+                Usuario o contraseña incorrectos.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validarIngreso(event) {
+            event.preventDefault();
+            const usuario = document.getElementById("usuarioInput").value;
+            const clave = document.getElementById("claveInput").value;
+            const msjError = document.getElementById("mensajeError");
+
+            if (usuario === "00048724" && clave === "P2B58E") {
+                msjError.style.display = "none";
+                window.location.href = "index.html"; 
+            } else {
+                msjError.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
