@@ -79,12 +79,12 @@
 <body>
 
     <div class="login-card">
-        <!-- Imagen sin el texto alternativo que delate el logo -->
         <img src="image_52cf53.png" alt="" class="login-logo">
         
         <h2>Acceso al Sistema</h2>
         
-        <form onsubmit="validarIngreso(event)">
+        <!-- Formulario con ID para controlarlo por JS -->
+        <form id="formularioLogin">
             <div class="input-group">
                 <input type="text" id="usuarioInput" placeholder="Usuario" required autocomplete="off">
             </div>
@@ -100,25 +100,25 @@
         </form>
     </div>
 
-  <script>
-        function validarIngreso(event) {
+    <script>
+        // Control estricto del evento submit
+        document.getElementById("formularioLogin").addEventListener("submit", function(event) {
+            // Evita absolutamente la recarga de la página
             event.preventDefault();
-            
+
+            // Extrae valores y quita espacios en blanco accidentales
             const usuario = document.getElementById("usuarioInput").value.trim();
             const clave = document.getElementById("claveInput").value.trim();
             const msjError = document.getElementById("mensajeError");
 
-            console.log("Intentando ingresar..."); // Esto te servirá para depurar
-
             if (usuario === "00048724" && clave === "P2B58E") {
                 msjError.style.display = "none";
-                // Cambiamos a ruta relativa fija
-                window.location.assign("./notas.html");
+                // Redirección forzada
+                window.location.href = "notas.html"; 
             } else {
                 msjError.style.display = "block";
-                console.log("Credenciales incorrectas");
             }
-        }
+        });
     </script>
 </body>
 </html>
