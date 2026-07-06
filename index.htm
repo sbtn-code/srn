@@ -100,16 +100,21 @@
         </form>
     </div>
 
-    <script>
+   <script>
         function validarIngreso(event) {
+            // Evita que la página se recargue por defecto
             event.preventDefault();
+
+            // Capturar los valores
             const usuario = document.getElementById("usuarioInput").value;
             const clave = document.getElementById("claveInput").value;
             const msjError = document.getElementById("mensajeError");
 
+            // Validación de credenciales
             if (usuario === "00048724" && clave === "P2B58E") {
                 msjError.style.display = "none";
-                window.location.href = "notas.html""; 
+                // AQUÍ ESTÁ LA MAGIA: Ahora debe apuntar a notas.html
+                window.location.href = "notas.html"; 
             } else {
                 msjError.style.display = "block";
             }
