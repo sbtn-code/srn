@@ -2,30 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Esta línea es la que garantiza que los móviles reconozcan el tamaño de la pantalla -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar notas - Sistema de Registro de Notas</title>
     <link rel="icon" href="https://www.uca.edu.sv/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Importamos la fuente para que sea idéntica a la original -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: "Open Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 13px; /* Tamaño un poco más compacto */
+            font-size: 13px;
             line-height: 1.42857143;
             color: #333;
             background-color: #fff;
             margin: 0;
         }
-        
-        /* Tono de azul ajustado para mayor realismo */
         :root {
             --uca-blue: #2c6ba1; 
             --uca-light-blue: #d9edf7;
             --uca-border: #e5e5e5;
         }
-
         .navbar {
             background-color: var(--uca-blue);
             color: white;
@@ -77,8 +72,6 @@
             color: var(--uca-blue);
             text-decoration: none;
         }
-        
-        /* Título con la línea inferior y letra delgada */
         .page-title {
             color: var(--uca-blue);
             font-size: 26px;
@@ -88,7 +81,6 @@
             border-bottom: 1px solid var(--uca-border);
             padding-bottom: 10px;
         }
-        
         .student-info {
             color: var(--uca-blue);
             font-size: 13px;
@@ -107,7 +99,6 @@
         .alert-info p {
             margin: 0 0 5px 0;
         }
-        
         .subject-header {
             background-color: #f9f9f9;
             border: 1px solid var(--uca-border);
@@ -130,7 +121,6 @@
         .subject-header .val {
             font-weight: 600;
         }
-
         .panel {
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -148,18 +138,15 @@
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
         }
-
-        /* Contenedor responsivo para móviles */
         .table-responsive {
             overflow-x: auto;
             width: 100%;
         }
-
         .table-notas {
             width: 100%;
             border-collapse: collapse;
             font-size: 12px;
-            min-width: 600px; /* Asegura que la tabla no se aplaste en móviles */
+            min-width: 600px;
         }
         .table-notas th {
             border-bottom: 2px solid #ddd;
@@ -276,61 +263,59 @@
                 profesor: "AA00123 RAÚL ERNESTO ÑÚÑEZ ALVEREZ",
                 materia: "100101 MECANICA DE FLUIDOS  -  Sección 01",
                 evaluaciones: [
-                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "--/--/2026", nota: "8.0" },
-                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.4" },
-                    { nombre: "Parcial 3", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.4" },
-                    { nombre: "Corto 1", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.0" },
-                    { nombre: "Corto 2", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.0" },
-                    { nombre: "Corto 3", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.0" }
-                ]
+                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "22/04/2026", nota: "9.0" },
+                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "03/06/2026", nota: "8.4" },
+                    { nombre: "Parcial 3", ponderacion: 25.0, fecha: "07/07/2026", nota: "6.8" }, 
+                    { nombre: "Corto 1", ponderacion: 10.0, fecha: "15/04/2026", nota: "9.0" },
+                    { nombre: "Corto 2", ponderacion: 10.0, fecha: "25/05/2026", nota: "9.0" },
+                    { nombre: "Corto 3", ponderacion: 10.0, fecha: "22/06/2026", nota: "8.0" }
+                ] // Total = 8.2
             },
             {
                 profesor: "BB00456 ERICK BURGOS",
                 materia: "100202 ANALISIS ESTRUCTURAL 1  -  Sección 02",
                 evaluaciones: [
-                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "--/--/2026", nota: "6.5" },
-                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "--/--/2026", nota: "7.0" },
-                    { nombre: "Parcial 3", ponderacion: 25.0, fecha: "--/--/2026", nota: "7.0" },
-                    { nombre: "Corto 1", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.0" },
-                    { nombre: "Corto 2", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.0" },
-                    { nombre: "Corto 3", ponderacion: 10.0, fecha: "--/--/2026", nota: "9.0" }
-                ]
+                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "17/04/2026", nota: "8.0" },
+                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "29/05/2026", nota: "6.6" },
+                    { nombre: "Parcial 3", ponderacion: 25.0, fecha: "02/07/2026", nota: "6.6" }, 
+                    { nombre: "Corto 1", ponderacion: 10.0, fecha: "10/04/2026", nota: "8.0" },
+                    { nombre: "Corto 2", ponderacion: 10.0, fecha: "18/05/2026", nota: "8.0" },
+                    { nombre: "Corto 3", ponderacion: 10.0, fecha: "15/06/2026", nota: "8.0" }
+                ] // Total = 7.3
             },
             {
                 profesor: "CC00789 RAÚL ERNESTO ÑÚÑEZ ALVEREZ",
                 materia: "100303 PROBABILIDAD Y ESTADISTICA  -  Sección 01",
                 evaluaciones: [
-                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "--/--/2026", nota: "8.5" },
-                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.6" },
-                    { nombre: "Parcial 3", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.6" },
-                    { nombre: "Corto 1", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.5" },
-                    { nombre: "Corto 2", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.5" },
-                    { nombre: "Corto 3", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.0" }
-                ]
+                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "11/04/2026", nota: "8.5" },
+                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "23/05/2026", nota: "9.0" },
+                    { nombre: "Examen Final", ponderacion: 25.0, fecha: "04/07/2026", nota: "7.0" }, 
+                    { nombre: "Corto 1", ponderacion: 15.0, fecha: "27/03/2026", nota: "9.0" },
+                    { nombre: "Corto 2", ponderacion: 15.0, fecha: "05/06/2026", nota: "9.0" }
+                ] // Total = 8.4
             },
             {
                 profesor: "BR05741 LARISSA JEANNETTE BRIOSO",
                 materia: "090278 PREVENCION DE LA VIOLENCIA SOCIAL  -  Sección 33",
                 evaluaciones: [
-                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "--/--/2026", nota: "7.5" },
-                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.2" },
-                    { nombre: "Parcial 3", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.2" },
-                    { nombre: "Corto 1", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.5" },
-                    { nombre: "Corto 2", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.5" },
-                    { nombre: "Corto 3", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.0" }
-                ]
+                    { nombre: "Primer Parcial", ponderacion: 15.0, fecha: "21/04/2026", nota: "8.5" },
+                    { nombre: "Actividad 1: Laboratorio", ponderacion: 25.0, fecha: "07/05/2026", nota: "8.2" },
+                    { nombre: "Segundo Parcial", ponderacion: 20.0, fecha: "28/05/2026", nota: "8.0" }, 
+                    { nombre: "Actividad 2: Buenas prácticas", ponderacion: 25.0, fecha: "11/06/2026", nota: "9.0" },
+                    { nombre: "Examen Final", ponderacion: 15.0, fecha: "02/07/2026", nota: "6.8" }
+                ] // Total = 8.2
             },
             {
                 profesor: "CO08991 WILLIAM JAVIER COCAR PEREZ",
                 materia: "210013 DINAMICA  -  Sección 02",
                 evaluaciones: [
-                    { nombre: "Parcial 1", ponderacion: 20.0, fecha: "--/--/2026", nota: "8.5" },
-                    { nombre: "Parcial 2", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.8" },
-                    { nombre: "Parcial 3", ponderacion: 25.0, fecha: "--/--/2026", nota: "8.8" },
-                    { nombre: "Laboratorio 1", ponderacion: 10.0, fecha: "--/--/2026", nota: "9.0" },
-                    { nombre: "Corto 1", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.5" },
-                    { nombre: "Corto 2", ponderacion: 10.0, fecha: "--/--/2026", nota: "8.5" }
-                ]
+                    { nombre: "Primera Evaluación Parcial", ponderacion: 25.0, fecha: "18/04/2026", nota: "9.2" },
+                    { nombre: "Segunda Evaluación Parcial", ponderacion: 20.0, fecha: "30/05/2026", nota: "8.8" },
+                    { nombre: "Evaluación Final", ponderacion: 25.0, fecha: "06/07/2026", nota: "7.2" }, 
+                    { nombre: "Examen Corto 1", ponderacion: 10.0, fecha: "10/04/2026", nota: "9.5" },
+                    { nombre: "Examen Corto 2", ponderacion: 10.0, fecha: "08/05/2026", nota: "9.5" },
+                    { nombre: "Examen Corto 3", ponderacion: 10.0, fecha: "19/06/2026", nota: "9.0" }
+                ] // Total = 8.7
             }
         ];
 
