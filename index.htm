@@ -100,23 +100,23 @@
         </form>
     </div>
 
-   <script>
+  <script>
         function validarIngreso(event) {
-            // Evita que la página se recargue por defecto
             event.preventDefault();
-
-            // Capturar los valores
-            const usuario = document.getElementById("usuarioInput").value;
-            const clave = document.getElementById("claveInput").value;
+            
+            const usuario = document.getElementById("usuarioInput").value.trim();
+            const clave = document.getElementById("claveInput").value.trim();
             const msjError = document.getElementById("mensajeError");
 
-            // Validación de credenciales
+            console.log("Intentando ingresar..."); // Esto te servirá para depurar
+
             if (usuario === "00048724" && clave === "P2B58E") {
                 msjError.style.display = "none";
-                // AQUÍ ESTÁ LA MAGIA: Ahora debe apuntar a notas.html
-                window.location.href = "notas.html"; 
+                // Cambiamos a ruta relativa fija
+                window.location.assign("./notas.html");
             } else {
                 msjError.style.display = "block";
+                console.log("Credenciales incorrectas");
             }
         }
     </script>
