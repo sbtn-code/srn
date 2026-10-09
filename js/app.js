@@ -72,7 +72,6 @@
   }
   document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{location.hash=button.dataset.view;}));
   document.getElementById('logout').addEventListener('click',()=>window.SRNAuth.logout());
-  document.getElementById('print').addEventListener('click',()=>window.print());
   window.addEventListener('hashchange',showView);
   render(); showView();
 })();
