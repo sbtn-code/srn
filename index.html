@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Acceso | Sistema de Registro de Notas · Demo</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="login-page" data-page="login">
+  <main class="login-card">
+    <img src="image_52cf53.png.jpg" class="login-logo" alt="Referencia universitaria UCA">
+    <h1>Sistema de Registro de Notas</h1>
+    <p class="login-subtitle">Acceso al sistema · Ingeniería Civil</p>
+    <form id="formularioLogin" method="post">
+      <div class="field"><label for="usuarioInput">Carnet</label><input id="usuarioInput" name="carnet" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="Ej. 00048724" required></div>
+      <div class="field"><label for="claveInput">Contraseña</label><div class="password-wrap"><input id="claveInput" type="password" name="password" autocomplete="off" required><button id="mostrarClave" type="button" aria-pressed="false" aria-controls="claveInput">Mostrar</button></div></div>
+      <p id="mensajeError" class="error" role="alert" hidden></p>
+      <button class="primary btn-login" type="submit">Ingresar</button>
+    </form>
+    <aside class="demo-access"><strong>Proyecto académico · Acceso de demostración</strong><p>Carnet: <code>00048724</code></p><p>Contraseña: <code>Demo2026!</code></p><p>Usa solamente estas credenciales de prueba.</p></aside>
+    <p class="login-footnote">Maqueta independiente. No es el portal oficial de la universidad.</p>
+    <noscript><p class="error">Activa JavaScript para usar esta demostración.</p></noscript>
+  </main>
+</body>
+</html>
