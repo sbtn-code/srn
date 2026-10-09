@@ -35,14 +35,16 @@
   // Datos de las capturas del estudiante. Años completados según el
   // período de la malla; 2025 está visible en la captura de Estática.
   const references = [
+    {id:'c2-m2',teacher:'VIOLETA ALEJANDRA CHICHIQUE MARTÍNEZ',section:'04',reportedFinal:'7.5',rows:[['Laboratorio 1',10,'13/09',6.50],['Primera Evaluación Parcial',20,'21/09',7.90],['Laboratorio 2',10,'11/10',7.30],['Segunda Evaluación Parcial',25,'19/10',9.10],['Laboratorio 3',10,'15/11',6.60],['Evaluación Final',25,'27/11',6.50]]},
+    {id:'c2-m4',code:'260028',name:'Ecología general',teacher:'MARYORY ANDREA VELADO CANO',section:'31',reportedFinal:'8.5',rows:[['Primera Evaluación Parcial',20,'11/09',10],['Análisis documental',20,'30/09',8],['Segunda Evaluación Parcial',20,'16/10',7],['Presentación de proyecto',20,'04/11',8.40],['Evaluación Final',20,'20/11',8.92]]},
     {id:'c3-m3',teacher:'EDGARDO WALTER HERNANDEZ GUEVARA',section:'01',reportedFinal:'8.1',rows:[['Primera Evaluación Parcial',20,'24/04',8.10],['Cuestionarios',10,'06/05',6],['Reporte salida de campo',10,'20/05',8],['Segunda Evaluación Parcial',20,'03/06',7.90],['Proyecto',10,'12/06',8.50],['Evaluación Final',30,'08/07',8.80]]},
     {id:'c3-m1',teacher:'JOSE JACOBO ABULLARADE DORATH',section:'03',reportedFinal:'8.2',rows:[['CORTO 1',10,'28/03',7.50],['Primera evaluación parcial',20,'05/04',7.90],['CORTO 2',10,'16/05',8.65],['Segunda evaluación parcial',25,'17/05',8.25],['CORTO 3',10,'13/06',6.30],['Evaluación final',25,'01/07',9.30]]},
-    {id:'c2-m1', teacher:'ANA PATRICIA HERNÁNDEZ LÓPEZ',section:'02',reportedFinal:'8.00',rows:[
+    {id:'c2-m1', teacher:'ALEJANDRA NATALIA REGALADO BONILLA',section:'02',reportedFinal:'8.00',rows:[
       ['Tarea grupal 1',5,'06/09',10],['Primera Evaluación Parcial',20,'14/09',7],
       ['Tarea grupal 2',5,'11/10',10],['Segunda Evaluación Parcial',25,'12/10',7.9],
       ['Taller métodos de prueba',15,'14/11',7],['Tarea grupal 3',5,'15/11',9.7],['Evaluación Final',25,'23/11',8]
     ]},
-    {id:'c2-m3',teacher:'JOSÉ ROBERTO MARTÍNEZ PÉREZ',section:'02',reportedFinal:'8.4',rows:[
+    {id:'c2-m3',teacher:'MARIO ERNESTO KHALIL ZELADA',section:'02',reportedFinal:'8.4',rows:[
       ['Primera Evaluación Parcial',25,'27/09',8.05],['Segunda Evaluación Parcial',20,'01/11',8.10],
       ['Evaluación Final',25,'30/11',7.65],['Laboratorios Prácticos',30,'',9.43]
     ],labs:[['Laboratorio 1','12/09',8.60],['Laboratorio 2','26/09',10],['Laboratorio 3','24/10',9.60],['Laboratorio 4','07/11',9.50]]},
@@ -114,7 +116,7 @@
   });
   const calculatedGrade = subject => subject.evaluations.reduce((sum,e)=>sum+(e.grade ?? 0)*e.weight/100,0);
   const finalGrade = subject => subject.reportedFinal !== undefined ? Number(subject.reportedFinal) : subject.evaluations.some(e=>e.grade === null) ? null : calculatedGrade(subject);
-  const finalGradeText = subject => subject.reportedFinal ?? (finalGrade(subject) === null ? '' : calculatedGrade(subject).toFixed(2));
+  const finalGradeText = subject => finalGrade(subject) === null ? '' : finalGrade(subject).toFixed(1);
   root.SRN = {cycles,finalGrade,calculatedGrade,finalGradeText};
   if (typeof module !== 'undefined') module.exports = root.SRN;
 })(typeof window !== 'undefined' ? window : globalThis);
