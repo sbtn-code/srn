@@ -1,10 +1,11 @@
 (function () {
   'use strict';
   if (!window.SRNAuth.active()) return;
-  const {cycles,finalGrade} = window.SRN;
+  const {cycles,finalGrade,finalGradeText} = window.SRN;
   const container = document.getElementById('materias-container');
   const selector = document.getElementById('cycle');
-  const formatDate = value => value.split('-').reverse().join('/');
+  const formatDate = value => value ? value.split('-').reverse().join('/') : '';
+  const rowsFor = subject => subject.evaluations.flatMap(e=>[e,...(e.children || []).map(child=>({...child,child:true}))]);
   const escape = value => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalize = value => value.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(',','.');
   document.getElementById('portal').hidden = false;
@@ -31,9 +32,9 @@
       <div class="subject-header"><dl><dt>Profesor:</dt><dd>${escape(subject.teacher)}</dd><dt>Materia:</dt><dd>${subject.code ? subject.code+' ' : ''}${escape(subject.name.toLocaleUpperCase('es'))} &nbsp; - &nbsp; Sección ${subject.section}</dd><dt></dt><dd class="details">${subject.uv} unidades valorativas · Ciclo ${cycle.roman}</dd></dl></div>
       <div class="panel"><button type="button" class="panel-heading" aria-expanded="true" aria-controls="${subject.id}"><span>Evaluaciones de la asignatura-sección</span><span class="chevron" aria-hidden="true">⌃</span></button>
       <div class="panel-body" id="${subject.id}"><div class="table-responsive"><table class="table-notas"><caption class="sr-only">Evaluaciones de ${escape(subject.name)}</caption><thead><tr>${['Evaluación','Ponderación (%)','Fecha realización','Nota'].map(label=>`<th scope="col">${label}</th>`).join('')}</tr><tr class="filter-row">${['evaluación','ponderación','fecha','nota'].map(label=>`<td><div class="filter-control"><input class="filter-input" type="text" aria-label="Filtrar por ${label} en ${escape(subject.name)}"><button type="button" class="clear-filter" aria-label="Limpiar filtro de ${label}">×</button></div></td>`).join('')}</tr></thead><tbody>
-      ${subject.evaluations.map(e=>`<tr data-evaluation><td>${escape(e.name)}</td><td>${e.weight.toFixed(1)}</td><td>${formatDate(e.date)}</td><td>${e.grade.toFixed(2)}</td></tr>`).join('')}
-      <tr class="empty-row" hidden><td colspan="4" class="empty">No hay evaluaciones que coincidan con los filtros.</td></tr></tbody><tfoot><tr><td colspan="2"></td><td>Nota final:</td><td>${finalGrade(subject).toFixed(2)}</td></tr></tfoot></table></div>
-      <div class="actions"><button class="reset-table" type="button" aria-label="Restablecer filtros de ${escape(subject.name)}" title="Restablecer filtros de esta tabla">⟳</button><button class="reset-cycle" type="button" aria-label="Restablecer todas las tablas del ciclo" title="Restablecer todas las tablas del ciclo">⟳</button><small class="row-count">${subject.evaluations.length} de ${subject.evaluations.length} evaluaciones</small></div></div></div></article>`).join('');
+      ${rowsFor(subject).map(e=>`<tr data-evaluation${e.child ? ' class="subevaluation"' : ''}><td>${escape(e.name)}${e.method === 'percentage' ? ' <span class="green" aria-label="Porcentaje">%</span>' : ''}${e.child ? ' <span class="sub-flag" aria-label="Subevaluación">⚑</span>' : ''}</td><td>${e.weight === null ? '<span title="Ponderación no legible en la captura" aria-label="No disponible">—</span>' : e.weight.toFixed(1)}</td><td>${formatDate(e.date)}</td><td>${e.grade.toFixed(2)}</td></tr>`).join('')}
+      <tr class="empty-row" hidden><td colspan="4" class="empty">No hay evaluaciones que coincidan con los filtros.</td></tr></tbody><tfoot><tr><td colspan="2"></td><td>Nota final:</td><td>${finalGradeText(subject)}</td></tr></tfoot></table></div>
+      <div class="actions"><button class="reset-table" type="button" aria-label="Restablecer filtros de ${escape(subject.name)}" title="Restablecer filtros de esta tabla">⟳</button><button class="reset-cycle" type="button" aria-label="Restablecer todas las tablas del ciclo" title="Restablecer todas las tablas del ciclo">⟳</button><small class="row-count">${rowsFor(subject).length} de ${rowsFor(subject).length} evaluaciones</small></div></div></div></article>`).join('');
   }
   selector.addEventListener('change',()=>{
     try { sessionStorage.setItem('srn-demo-cycle',selector.value); } catch (_) {}

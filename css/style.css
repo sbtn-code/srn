@@ -6,3 +6,5 @@
 @media print{.navbar,.subnav,.top-strip,.breadcrumb,.cycle-tools label,.cycle-tools select,.print,.filter-row,.actions,.alert-info,#home-view,#help-view{display:none!important}.main{padding:0}.table-notas{min-width:0}.panel-body[hidden]{display:block!important}.subject{break-inside:avoid}.subject-header{margin-bottom:6px}.panel-heading{color:#222;background:#eee}.footer{font-size:10px}.table-responsive{overflow:visible}}
 
 @media print{tr[data-evaluation][hidden]{display:table-row!important}.empty-row{display:none!important}}
+
+.subevaluation td:first-child{padding-left:34px}.sub-flag{color:#458fb7}
