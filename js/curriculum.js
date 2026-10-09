@@ -1,5 +1,4 @@
-/* Ingeniería Civil, Plan 2018. Nombres, códigos y UV del pénsum proporcionado.
-   Incluye datos de las capturas proporcionadas y ejemplos para las materias restantes. */
+/* Ingeniería Civil, Plan 2018. Notas de las capturas del estudiante; otras materias usan datos de ejemplo. */
 (function (root) {
   'use strict';
   const plan = [
@@ -33,9 +32,11 @@
         })
       }))};
   });
-  // Datos de diez capturas, con docentes ficticios. Años completados según el
+  // Datos de las capturas del estudiante. Años completados según el
   // período de la malla; 2025 está visible en la captura de Estática.
   const references = [
+    {id:'c3-m3',teacher:'EDGARDO WALTER HERNANDEZ GUEVARA',section:'01',reportedFinal:'8.1',rows:[['Primera Evaluación Parcial',20,'24/04',8.10],['Cuestionarios',10,'06/05',6],['Reporte salida de campo',10,'20/05',8],['Segunda Evaluación Parcial',20,'03/06',7.90],['Proyecto',10,'12/06',8.50],['Evaluación Final',30,'08/07',8.80]]},
+    {id:'c3-m1',teacher:'JOSE JACOBO ABULLARADE DORATH',section:'03',reportedFinal:'8.2',rows:[['CORTO 1',10,'28/03',7.50],['Primera evaluación parcial',20,'05/04',7.90],['CORTO 2',10,'16/05',8.65],['Segunda evaluación parcial',25,'17/05',8.25],['CORTO 3',10,'13/06',6.30],['Evaluación final',25,'01/07',9.30]]},
     {id:'c2-m1', teacher:'ANA PATRICIA HERNÁNDEZ LÓPEZ',section:'02',reportedFinal:'8.00',rows:[
       ['Tarea grupal 1',5,'06/09',10],['Primera Evaluación Parcial',20,'14/09',7],
       ['Tarea grupal 2',5,'11/10',10],['Segunda Evaluación Parcial',25,'12/10',7.9],
@@ -45,33 +46,33 @@
       ['Primera Evaluación Parcial',25,'27/09',8.05],['Segunda Evaluación Parcial',20,'01/11',8.10],
       ['Evaluación Final',25,'30/11',7.65],['Laboratorios Prácticos',30,'',9.43]
     ],labs:[['Laboratorio 1','12/09',8.60],['Laboratorio 2','26/09',10],['Laboratorio 3','24/10',9.60],['Laboratorio 4','07/11',9.50]]},
-    {id:'c3-m4',teacher:'CARLOS ALBERTO LÓPEZ RAMÍREZ',section:'01',reportedFinal:'7.5',rows:[
+    {id:'c3-m4',teacher:'SAUL ERNESTO GRANADA LIZAMA',section:'01',reportedFinal:'7.5',rows:[
       ['Primera Tarea',5,'02/04',6.75],['Primera Evaluación Parcial',20,'12/04',8.10],
       ['Segunda Tarea',5,'14/05',8.67],['Segunda Evaluación Parcial',25,'24/05',5.75],
       ['Tercera Tarea',5,'18/06',7.88],['Proyecto',15,'23/06',8.80],['Evaluación Final',25,'03/07',7.65]
     ]},
-    {id:'c3-m2',teacher:'JORGE ENRIQUE GARCÍA FLORES',section:'01',reportedFinal:'8.0',rows:[
+    {id:'c3-m2',teacher:'MANUEL MAURICIO GRANDE PINEDA',section:'01',reportedFinal:'8.0',rows:[
       ['Primera Evaluación Parcial',20,'03/05',6.43],['Segunda Evaluación Parcial',20,'07/06',6.15],
       ['Tarea',10,'11/06',10],['Prácticas de laboratorio',15,'18/06',8.62],['Discusión',10,'20/06',9.95],
       ['Conferencia de cátedra',5,'21/06',9.93],['Evaluación Final',20,'07/07',8.33]
     ]},
-    {id:'c3-m5',teacher:'LUIS ERNESTO RODRÍGUEZ CRUZ',section:'03',reportedFinal:'8.1',rows:[
+    {id:'c3-m5',teacher:'CARLOS ANIBAL JUAREZ RAMOS',section:'03',reportedFinal:'8.1',rows:[
       ['Primera Evaluación Parcial',20,'10/04',7.03],['Talleres',15,'15/05',6.40],
       ['Segunda Evaluación Parcial',20,'27/05',8],['Laboratorios',15,'14/06',9.95],
       ['Proyecto',10,'30/06',9.60],['Evaluación Final',20,'02/07',8.50]
     ]},
     // La captura dice Cálculo III, pero repite el código de Cálculo II.
     // Se mantiene 010183 del pénsum para evitar confundir las dos materias.
-    {id:'c4-m1',teacher:'ÓSCAR MAURICIO REYES HERNÁNDEZ',section:'02',reportedFinal:'8.0',rows:[
+    {id:'c4-m1',teacher:'MELVIN BENJAMIN GUARDADO GOMEZ',section:'02',reportedFinal:'8.0',rows:[
       ['CORTO 1',10,'22/08',9],['Primera Evaluación Parcial',20,'06/09',8.20],['CORTO 2',10,'24/09',9.40],
       ['Segunda Evaluación Parcial',25,'11/10',9.80],['CORTO 3',10,'05/11',5],['Evaluación Final',25,'22/11',6.20]
     ]},
-    {id:'c4-m5',code:'090183',name:'Introducción a los derechos humanos',teacher:'MARÍA ELENA GONZÁLEZ RIVAS',section:'32',reportedFinal:'8.4',rows:[
+    {id:'c4-m5',code:'090183',name:'Introducción a los derechos humanos',teacher:'KARINA ESTHER GREGORI MENDEZ',section:'32',reportedFinal:'8.4',rows:[
       ['Primera Evaluación Parcial',20,'11/09',10],['Análisis documental',20,'30/09',5.10],
-      ['Segunda Evaluación Parcial',20,'16/10',9.60],['Presentación de proyecto d…',20,'04/11',8.40],['Evaluación Final',20,'01/11',8.92]
+      ['Segunda Evaluación Parcial',20,'16/10',9.60],['Presentación de proyecto',20,'04/11',8.40],['Evaluación Final',20,'01/11',8.92]
     ]},
     // Se mantiene 200069 para Física II según el pénsum; la captura repite 200068.
-    {id:'c4-m2',teacher:'JORGE ENRIQUE GARCÍA FLORES',section:'03',reportedFinal:'8.1',rows:[
+    {id:'c4-m2',teacher:'MANUEL MAURICIO GRANDE PINEDA',section:'03',reportedFinal:'8.1',rows:[
       ['Primera Evaluación Parcial',20,'13/09',7.67],['Segunda Evaluación Parcial',20,'18/10',10],
       ['Discusiones',10,'04/11',7.13],['Laboratorios',20,'04/11',6.93],['Tareas',5,'05/11',10],
       ['Conferencia',5,'05/11',10],['Evaluación Final',20,'26/11',7.50]
@@ -81,7 +82,7 @@
       ['Parcial II',25,'17/10',4],['Tarea II',2,'17/10',9.30],['Coprto II',5,'11/11',5.50],
       ['Proyecto construcción de m…',15,'21/11',9.70],['Parcial III',25,'24/11',8.10]
     ]},
-    {id:'c4-m3',teacher:'CLAUDIA PATRICIA FLORES MARTÍNEZ',section:'02',reportedFinal:'8.2',rows:[
+    {id:'c4-m3',teacher:'FERNANDA SOPHIA PEREZ RIVAS',section:'02',reportedFinal:'8.2',rows:[
       ['Primer examen corto',5,'05/09',7],['Primera Examen Parcial',20,'20/09',9.40],
       ['Segundo Examen Parcial',25,'25/10',8.80],['Segundo examen corto',5,'31/10',10],
       ['Proyecto de Investigación',20,'12/11',6.88],['Examen final',25,'28/11',8.20]
