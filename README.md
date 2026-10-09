@@ -5,7 +5,7 @@ Maqueta estática de consulta de notas de Ingeniería Civil, Plan 2018, inspirad
 ## Acceso de demostración
 
 - Carnet: `00048724`
-- Contraseña: `Demo2026!`
+- Contraseña: `F9B3774E`
 
 Abrir `index.html`. La ruta anterior `index.htm` redirige al nuevo inicio.
 

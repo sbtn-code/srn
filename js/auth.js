@@ -22,8 +22,8 @@
     form.addEventListener('submit', event => {
       event.preventDefault();
       const carnet = document.getElementById('usuarioInput').value.trim();
-      if (carnet !== '00048724' || password.value !== 'Demo2026!') {
-        error.textContent = 'Carnet o contraseña incorrectos. Usa los datos de demostración indicados abajo.';
+      if (carnet !== '00048724' || password.value !== 'F9B3774E') {
+        error.textContent = 'Carnet o contraseña incorrectos.';
         error.hidden = false;
         password.value = '';
         password.focus();
