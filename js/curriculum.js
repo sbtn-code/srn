@@ -10,13 +10,28 @@
     [['200053','Mecánica de fluidos',4],['210114','Análisis estructural I',3],['210057','Materiales de construcción',4],['210013','Dinámica',3],['010118','Probabilidad y estadística',4]],
     [['260024','Ingeniería ambiental',5],['210115','Análisis estructural II',3],['210112','Ingeniería de construcción I',4],['210060','Ingeniería geotécnica',5],['210029','Topografía',4]]
   ];
-  const teachers = ['MARIO ANDRÉS RIVERA LÓPEZ','ANA LUCÍA TORRES MÉNDEZ','CARLOS EDUARDO SALAZAR RIVAS','SOFÍA ISABEL CASTILLO REYES','DIEGO ALEJANDRO FLORES CRUZ','VALERIA BEATRIZ MORALES PINEDA','JOSÉ MANUEL VARGAS SOLÍS','ELENA PATRICIA NAVARRO DÍAZ'];
+  // Docentes de ejemplo para asignaturas sin docente de referencia.
+  // Se asigna un nombre único a cada materia; los nombres provenientes de
+  // capturas se preservan tal como fueron incorporados al proyecto.
+  const teachers = [
+    'MARIO ANDRÉS RIVERA LÓPEZ','ANA LUCÍA TORRES MÉNDEZ','CARLOS EDUARDO SALAZAR RIVAS',
+    'SOFÍA ISABEL CASTILLO REYES','DIEGO ALEJANDRO FLORES CRUZ','VALERIA BEATRIZ MORALES PINEDA',
+    'JOSÉ MANUEL VARGAS SOLÍS','ELENA PATRICIA NAVARRO DÍAZ','ROBERTO ALEJANDRO CRUZ MEJÍA',
+    'ISABEL CRISTINA MÉNDEZ ARÉVALO','PABLO EDUARDO CASTRO VELÁSQUEZ','LUCÍA FERNANDA ÁVILA QUINTEROS',
+    'FERNANDO ANTONIO PINEDA ROSALES','SANDRA MARCELA CHÁVEZ ORELLANA','MIGUEL ERNESTO ROMERO GUARDADO',
+    'DANIELA BEATRIZ ESCOBAR VÁSQUEZ','ALFREDO JAVIER GUERRA HERNÁNDEZ','GABRIELA ALEJANDRA MOLINA REYES',
+    'RICARDO ALBERTO FUENTES ZELAYA','CAROLINA ELIZABETH SERRANO FLORES','HÉCTOR DANIEL MORALES PORTILLO',
+    'PAOLA NICOLE GUZMÁN CAMPOS','EDUARDO RAFAEL LÓPEZ MARTÍNEZ','MÓNICA PATRICIA HERRERA RIVAS',
+    'JULIO CÉSAR AGUILAR CASTILLO','ALEJANDRA SOFÍA RIVAS CÁCERES','FRANCISCO JAVIER RAMÍREZ PEÑA',
+    'MARÍA FERNANDA MEJÍA SALAZAR'
+  ];
   const roman = ['I','II','III','IV','V','VI'];
   const schemes = [
     [['Examen Corto 1',15],['Primera Evaluación Parcial',20],['Segunda Evaluación Parcial',25],['Examen Corto 2',15],['Evaluación Final',25]],
     [['Primera Evaluación Parcial',20],['Laboratorio 1',15],['Segunda Evaluación Parcial',20],['Laboratorio 2',15],['Proyecto final',30]],
     [['Actividad práctica 1',15],['Primera Evaluación Parcial',25],['Actividad práctica 2',15],['Segunda Evaluación Parcial',25],['Trabajo final',20]]
   ];
+  let nextExampleTeacher = 0;
   const cycles = plan.map((subjects, c) => {
     const year = 2024 + Math.floor(c / 2);
     const period = c % 2 + 1;
@@ -25,7 +40,7 @@
       subjects: subjects.map(([code,name,uv], s) => ({
         id: `c${c+1}-m${s+1}`, code, name, uv,
         section: String(1 + (c+s)%5).padStart(2,'0'),
-        teacher: teachers[(c*3+s)%teachers.length],
+        teacher: teachers[nextExampleTeacher++],
         evaluations: schemes[(c+s)%schemes.length].map(([name,weight], e) => {
           const date = new Date(Date.UTC(year, period === 1 ? 2 : 7, 10 + e*23 + s*2));
           const grade = (70 + ((c*17+s*11+e*7+s*e*3)%21))/10;
@@ -104,6 +119,24 @@
       // La ponderación de cada laboratorio está recortada: no inferir el 25%.
       group.children = reference.labs.map(([name,day,grade])=>({name,weight:null,date:date(day),grade}));
     }
+  });
+  // Evitar nombres de docentes repetidos entre las materias del plan.
+  // Dar prioridad a los de las capturas; asignar suplentes ficticios a los demás.
+  const usedTeacherNames = new Set();
+  const allSubjects = cycles.flatMap(cycle => cycle.subjects);
+  allSubjects.filter(subject => subject.source === 'reference').forEach(subject => {
+    if (usedTeacherNames.has(subject.teacher)) {
+      const replacement = teachers.find(name => !usedTeacherNames.has(name) && !allSubjects.some(item => item.source === 'reference' && item.teacher === name));
+      if (replacement) subject.teacher = replacement;
+    }
+    usedTeacherNames.add(subject.teacher);
+  });
+  allSubjects.filter(subject => subject.source !== 'reference').forEach(subject => {
+    if (usedTeacherNames.has(subject.teacher)) {
+      const replacement = teachers.find(name => !usedTeacherNames.has(name));
+      if (replacement) subject.teacher = replacement;
+    }
+    usedTeacherNames.add(subject.teacher);
   });
   // El ciclo actual está en curso: solo la primera evaluación tiene nota.
   cycles.at(-1).subjects.forEach(subject => {
