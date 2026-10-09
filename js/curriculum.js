@@ -105,9 +105,15 @@
       group.children = reference.labs.map(([name,day,grade])=>({name,weight:null,date:date(day),grade}));
     }
   });
-  const calculatedGrade = subject => subject.evaluations.reduce((sum,e)=>sum+e.grade*e.weight/100,0);
-  const finalGrade = subject => subject.reportedFinal !== undefined ? Number(subject.reportedFinal) : calculatedGrade(subject);
-  const finalGradeText = subject => subject.reportedFinal ?? calculatedGrade(subject).toFixed(2);
+  // El ciclo actual está en curso: solo la primera evaluación tiene nota.
+  cycles.at(-1).subjects.forEach(subject => {
+    subject.evaluations.forEach((evaluation, index) => {
+      if (index > 0) evaluation.grade = null;
+    });
+  });
+  const calculatedGrade = subject => subject.evaluations.reduce((sum,e)=>sum+(e.grade ?? 0)*e.weight/100,0);
+  const finalGrade = subject => subject.reportedFinal !== undefined ? Number(subject.reportedFinal) : subject.evaluations.some(e=>e.grade === null) ? null : calculatedGrade(subject);
+  const finalGradeText = subject => subject.reportedFinal ?? (finalGrade(subject) === null ? '' : calculatedGrade(subject).toFixed(2));
   root.SRN = {cycles,finalGrade,calculatedGrade,finalGradeText};
   if (typeof module !== 'undefined') module.exports = root.SRN;
 })(typeof window !== 'undefined' ? window : globalThis);
