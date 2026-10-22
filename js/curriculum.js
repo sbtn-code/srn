@@ -112,7 +112,7 @@
   const demoGradesVI = [[8.2,7.4,8.7,7.9,8.5],[7.3,8.1,7.8,8.6,7.5],[8.9,7.7,8.3,7.2,8],[7.6,8.8,8.1,7.4,8.7],[8.4,7.1,7.9,8.5,7.8]];
   cycles.find(cycle => cycle.id === '6').subjects.forEach((subject, subjectIndex) => {
     subject.evaluations.forEach((evaluation, evaluationIndex) => {
-      evaluation.grade = demoGradesVI[subjectIndex][evaluationIndex];
+      evaluation.grade = evaluationIndex === 1 ? demoGradesVI[subjectIndex][evaluationIndex] : null;
     });
   });
   const calculatedGrade = subject => subject.evaluations.reduce((sum,e)=>sum+(e.grade ?? 0)*e.weight/100,0);
