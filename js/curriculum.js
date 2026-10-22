@@ -115,6 +115,13 @@
       evaluation.grade = evaluationIndex === 0 ? [7.1,8.2,7.2,8.3,7.3][subjectIndex] : evaluationIndex === 1 ? demoGradesVI[subjectIndex][evaluationIndex] : null;
     });
   });
+  // Calendario de ejemplo del ciclo VI basado en las fechas de referencia.
+  const datesVI = {"c6-m1":["09-03","09-10","10-15","10-22","12-03"],"c6-m2":["09-04","09-11","10-23","11-14","12-04"],"c6-m3":["09-12","09-18","10-24","10-30","12-05"],"c6-m4":["09-05","09-12","10-17","10-24","12-04"],"c6-m5":["09-03","09-10","10-22","11-19","12-03"]};
+  cycles.find(cycle => cycle.id === '6').subjects.forEach(subject => {
+    subject.evaluations.forEach((evaluation, index) => {
+      evaluation.date = `2026-${datesVI[subject.id][index]}`;
+    });
+  });
   const calculatedGrade = subject => subject.evaluations.reduce((sum,e)=>sum+(e.grade ?? 0)*e.weight/100,0);
   const finalGrade = subject => subject.reportedFinal !== undefined ? Number(subject.reportedFinal) : subject.evaluations.some(e=>e.grade === null) ? null : calculatedGrade(subject);
   const finalGradeText = subject => finalGrade(subject) === null ? '' : finalGrade(subject).toFixed(1);
